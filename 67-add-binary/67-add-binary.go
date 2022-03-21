@@ -10,10 +10,10 @@ func add(min string, max string) string {
     answer := ""
     pre := 0
     sum := 0
-    mapper := map[string]int{"0": 0, "1": 1}
+    mapper := map[uint8]int{48: 0, 49: 1}
     
     for i := 0; i < len(min); i++ {
-        sum = pre + mapper[string(min[len(min)-i-1])] + mapper[string(max[len(max)-i-1])]
+        sum = pre + mapper[min[len(min)-i-1]] + mapper[max[len(max)-i-1]]
         pre = sum / 2
         if sum % 2 == 0 {
             answer = "0" + answer
@@ -23,7 +23,7 @@ func add(min string, max string) string {
     }
     
     for i := len(min); i < len(max); i++ {
-        sum = pre + mapper[string(max[len(max)-i-1])]
+        sum = pre + mapper[max[len(max)-i-1]]
         pre = sum / 2
         if sum % 2 == 0 {
             answer = "0" + answer
