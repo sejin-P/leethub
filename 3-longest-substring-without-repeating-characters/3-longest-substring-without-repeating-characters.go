@@ -6,7 +6,7 @@ func lengthOfLongestSubstring(s string) int {
         idx, ok := letterDict[s[i]]
         if !ok || idx < start {
             if i-start+1 > result {
-                result = i-start+1
+                result += 1
             }
         } else {
             start = idx + 1
