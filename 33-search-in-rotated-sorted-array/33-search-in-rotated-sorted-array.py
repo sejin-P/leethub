@@ -16,19 +16,16 @@ class Solution:
             if mid_val == target:
                 return mid
             
-            if left == mid:
-                return -1
-            
             if mid_val < right_val:
                 if mid_val < target and target < right_val:
-                    left = mid
+                    left = mid + 1
                     continue
-                right = mid
+                right = mid - 1
             else:
                 if left_val < target and target < mid_val:
-                    right = mid
+                    right = mid - 1
                     continue
-                left = mid
+                left = mid + 1
         
         return -1
         
