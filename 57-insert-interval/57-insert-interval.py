@@ -2,10 +2,6 @@ class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
         if len(intervals) == 0:
             return [newInterval]
-        if newInterval[1] < intervals[0][0]:
-            return [newInterval] + intervals
-        if newInterval[0] > intervals[-1][1]:
-            return intervals + [newInterval]
         
         left, right = [], []
         mergeMin, mergeMax = newInterval[0], newInterval[1]
