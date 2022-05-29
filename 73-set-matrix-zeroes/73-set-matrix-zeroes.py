@@ -12,12 +12,11 @@ class Solution:
                     ver_di[i] = True
                     hor_di[j] = True
         
-        for i in range(ver):
-            for j in range(hor):
-                if ver_di.get(i) is not None:
-                    matrix[i][j] = 0
-                elif hor_di.get(j) is not None:
-                    matrix[i][j] = 0
+        for key in list(ver_di.keys()):
+            matrix[key] = [0 for _ in range(hor)]
+        for key in list(hor_di.keys()):
+            for i in range(ver):
+                matrix[i][key] = 0
         
         return
                 
