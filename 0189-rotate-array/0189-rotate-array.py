@@ -12,5 +12,7 @@ class Solution:
             nums[(i+k)%n] = nums[i]
         
         for i in range(k, n):
-            nums[(i+k)%n], r[i%k] = r[i%k], nums[(i+k)%n]
+            n_idx = (i+k)%n
+            r_idx = i%k
+            nums[n_idx], r[r_idx] = r[r_idx], nums[n_idx]
         
