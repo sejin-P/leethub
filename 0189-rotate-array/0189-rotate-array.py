@@ -5,12 +5,16 @@ class Solution:
         if k == 0:
             return
         
-        r = []
-    
-        for i in range(k):
-            r.append(nums[(i+k)%n])
-            nums[(i+k)%n] = nums[i]
+        rotated = 0
+        rotated_num = nums[0]
+        i, start = 0, 0
         
-        for i in range(k, n):
-            nums[(i+k)%n], r[i%k] = r[i%k], nums[(i+k)%n]
+        while rotated < n:
+            rotated_num, nums[(i+k)%n] = nums[(i+k)%n], rotated_num
+            rotated += 1
+            i = (i+k)%n
+            if i == start:
+                i = (i+1)%n
+                start += 1
+                rotated_num = nums[i]
         
