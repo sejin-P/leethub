@@ -5,9 +5,10 @@ class Solution:
         max_h = -1
         
         for i in range(n):
-            if max_h < heights[n-i-1]:
-                max_h = heights[n-i-1]
-                res.append(n-i-1)
+            idx = n-i-1
+            if max_h < heights[idx]:
+                max_h = heights[idx]
+                res.append(idx)
         
         return reversed(res)  
         
