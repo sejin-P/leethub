@@ -13,8 +13,8 @@ class Solution:
                 lis[i] = stack[-1]
             stack.append(i)
         for i in range(n):
-            maxLen = ris[i] - lis[i] - 1
-            res[maxLen-1] = max(res[maxLen-1], nums[i])
+            maxLen = ris[i] - lis[i] - 2
+            res[maxLen] = max(res[maxLen], nums[i])
         for i in range(n-2, -1, -1):
             res[i] = max(res[i], res[i+1])
         
