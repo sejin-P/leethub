@@ -1,8 +1,6 @@
-from collections import defaultdict
-
 class Solution:
     def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
-        h = defaultdict(int)
+        h = {}
         n = len(nums)
         
         for i in range(n):
