@@ -7,24 +7,25 @@
 class BSTIterator:
 
     def __init__(self, root: Optional[TreeNode]):
-        self.arr = self.convert(root)
-        self.idx = 0
-        
-    def convert(self, root: Optional[TreeNode]):
-        if not root:
-            return []
-        
-        return self.convert(root.left) + [root.val] + self.convert(root.right)
-        
+        leftMostStack = []
+        h = root
+        while h:
+            leftMostStack.append(h)
+            h = h.left
+        self.leftMostStack = leftMostStack
 
     def next(self) -> int:
-        res = self.arr[self.idx]
-        self.idx += 1
+        leftMost = self.leftMostStack.pop()
+        res = leftMost.val
+        if leftMost.right:
+            r = leftMost.right
+            while r:
+                self.leftMostStack.append(r)
+                r = r.left
         return res
-        
 
     def hasNext(self) -> bool:
-        return self.idx < len(self.arr)
+        return len(self.leftMostStack) > 0
         
 
 
