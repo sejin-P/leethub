@@ -36,12 +36,27 @@ class Solution:
         
         
     def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
-        l = self.size(head)
-        self.head = head
-        
-        root = self.convert(0, l-1)
-        
-        return root
+        nums = []
+    
+        while head:
+            nums.append(head.val)
+            head = head.next
+
+        # 숫자 쫙 뽑아 주시고~
+
+        def buildTree(sub):
+            if len(sub) == 0:
+                return None
+
+            mid = len(sub) // 2
+            node = TreeNode(val=sub[mid])
+
+            node.left = buildTree(sub[:mid])
+            node.right = buildTree(sub[mid+1:])
+
+            return node
+    
+        return buildTree(nums)
     
     
         
