@@ -1,9 +1,7 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        self.di = {}
-        for w in wordDict:
-            self.di[w] = True
-        self.results = {}
+        self.di = set(wordDict)
+        self.results = set()
         self.s = s
         self.slen = len(s)
             
@@ -19,7 +17,7 @@ class Solution:
                 r = self.wbreak(i)
                 if r:
                     return True
-                self.results[i] = False
+                self.results.add(i)
                 
         return False
         
