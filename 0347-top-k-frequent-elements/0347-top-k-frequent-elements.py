@@ -19,8 +19,7 @@ class Solution:
         res = []
         for i in range(len(c)-1,-1,-1):
             k -= c[i]
-            if c[i] != 0:
-                res += val_dict[i]
+            res += val_dict[i]
             if k == 0:
                 return res
         
