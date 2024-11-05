@@ -1,10 +1,8 @@
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        if len(nums) == 0:
-            return 0
         endMap = {}
         
-        maxLen = 1
+        maxLen = 0
         for num in nums:
             if num in endMap:
                 continue
@@ -26,6 +24,7 @@ class Solution:
                 maxLen = max(maxLen, moreEnd-num+1)
             else:
                 endMap[num] = num
+                maxLen = max(maxLen, 1)
         
         return maxLen
         
