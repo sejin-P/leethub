@@ -2,24 +2,36 @@ from collections import defaultdict
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         cnt = defaultdict(int)
+        
         for num in nums:
             cnt[num] += 1
+            
+        minVal = len(nums)
+        maxVal = 0
         
-        values = cnt.values()
-        min_val = min(values)
-        max_val = max(values)
-        
-        c = [0]*(max_val-min_val+1)
-
-        val_dict = defaultdict(list)
+        valDict = defaultdict(list)
         for key in cnt.keys():
-            c[cnt[key]-min_val] += 1
-            val_dict[cnt[key]-min_val].append(key)
-       
+            val = cnt[key]
+            valDict[val].append(key)
+            if val <= minVal:
+                minVal = val
+            if maxVal <= val:
+                maxVal = val
+        
+        field = [0]*(maxVal-minVal+1)
+        
+        for key in cnt.keys():
+            field[cnt[key]-minVal] += 1
+        
         res = []
-        for i in range(len(c)-1,-1,-1):
-            k -= c[i]
-            res += val_dict[i]
-            if k == 0:
+        for idx in range(len(field)-1, -1, -1):
+            valCnt = field[idx]
+            if valCnt == 0:
+                continue
+            
+            k -= valCnt
+            res += valDict[minVal+idx]
+            
+            if k <= 0:
                 return res
         
