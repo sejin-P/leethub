@@ -12,26 +12,27 @@ class Solution:
     # calculate each distances and return (distances from root, number of pairs)
     def calculateLeafDistances(self, root, distance):
         if not root:
-            return ([], 0)
+            return ([0]*11, 0)
+        if not root.left and not root.right:
+            return ([1]+[0]*10, 0)
         
         left = self.calculateLeafDistances(root.left, distance)
         right = self.calculateLeafDistances(root.right, distance)
         
-        if not left[0] and not right[0]:
-            return ([0], 0)
+        distanceCnts = [0]*11
         
-        distances = []
-        
-        for d in left[0]:
-            distances.append(d+1)
-        for d in right[0]:
-            distances.append(d+1)
+        for i in range(10):
+            distanceCnts[i+1] = left[0][i]+right[0][i]
         
         numPairs = left[1] + right[1]
-        for ld in left[0]:
-            for rd in right[0]:
-                if ld + rd + 2 <= distance:
-                    numPairs += 1
         
-        return (distances, numPairs)
+        prefix = 0
+        i = 0
+        
+        for d in range(distance-2, -1, -1):
+            prefix += left[0][i]
+            numPairs += prefix * right[0][d]
+            i += 1
+        
+        return (distanceCnts, numPairs)
         
