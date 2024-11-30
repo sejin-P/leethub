@@ -1,21 +1,20 @@
 class Solution:
     def reverseWords(self, s: str) -> str:
-        stack = []
+        res = ''
+        word = ''
         wasBlank = True
         for letter in s:
             if letter == ' ':
+                if word:
+                    res = word + ' ' + res
+                    word = ''
                 wasBlank = True
                 continue
-            if wasBlank:
-                stack.append(letter)
-            else:
-                stack[-1] = stack[-1] + letter
+            word += letter
             wasBlank = False
         
-        res = ''
-        while stack:
-            word = stack.pop()
-            res += word + ' '
+        if word:
+            res = word + ' ' + res
         
         return res[:-1]
         
