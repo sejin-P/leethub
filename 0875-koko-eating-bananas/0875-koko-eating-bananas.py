@@ -15,7 +15,6 @@ class Solution:
                 l = mid
             s = 0
         
-        s = 0
         for pile in piles:
             s += (pile-1) // l + 1
         if s <= h:
